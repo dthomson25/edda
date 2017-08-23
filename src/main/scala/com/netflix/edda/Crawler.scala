@@ -161,7 +161,7 @@ abstract class Crawler extends Observable {
     val errorReducer = 2
     // number of "free" errors to ignore before full throttling is enabled
     val margin = 10
-    val marginalDelay = ( throttle_delay.get.toInt * (((retry_count-margin)/errorReducer) + 1) )
+    val marginalDelay = math.abs( throttle_delay.get.toInt * (((retry_count-margin)/errorReducer) + 1) )
     val throttleDelay = ( throttle_delay.get.toInt * ((retry_count/errorReducer) + 1) )
 
     /* configurable delay for all requests to slow down access */
